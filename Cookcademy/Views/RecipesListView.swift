@@ -11,15 +11,23 @@ struct RecipesListView: View {
     //StateObject so that the view updates when the model changes
     @StateObject var recipeData = RecipeData()
     
+    private let listBackgroundColor = AppColor.background
+    private let listForegroundColor = AppColor.foreground
+    
     var body: some View {
         NavigationView{
             List {
                 ForEach(recipes) { recipe in
-                    Text(recipe.mainInformation.name)
+                    NavigationLink(destination: {
+                        RecipeDetailView(recipe: recipe)
+                    }, label: {Text(recipe.mainInformation.name)})
                 }
+                .listRowBackground(listBackgroundColor)
+                .foregroundColor(listForegroundColor)
             }
-            .listStyle(.sidebar)
             .navigationTitle(navigationTitle)
+            .listStyle(.inset)
+            
         }
     }
 }

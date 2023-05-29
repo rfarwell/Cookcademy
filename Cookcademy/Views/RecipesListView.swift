@@ -16,7 +16,6 @@ struct RecipesListView: View {
     private let listForegroundColor = AppColor.foreground
     
     var body: some View {
-        NavigationView{
             List {
                 ForEach(recipes) { recipe in
                     NavigationLink(destination: {
@@ -29,7 +28,7 @@ struct RecipesListView: View {
             .navigationTitle(navigationTitle)
             .listStyle(.inset)
             
-        }
+        
     }
 }
 
@@ -45,7 +44,10 @@ extension RecipesListView {
 
 struct RecipesListView_Previews: PreviewProvider {
     static var previews: some View {
-        RecipesListView(category: MainInformation.Category.breakfast)
-            .environmentObject(RecipeData())
+        NavigationView(content: {
+            RecipesListView(category: MainInformation.Category.breakfast)
+                .environmentObject(RecipeData())
+        })
+        
     }
 }

@@ -29,6 +29,10 @@ struct Recipe: Identifiable{
                   ingredients: [],
                   directions: [])
     }
+    
+    var isValid: Bool {
+        mainInformation.isValid && !ingredients.isEmpty && !directions.isEmpty
+    }
 }
 
 struct MainInformation {
@@ -36,6 +40,10 @@ struct MainInformation {
     var description: String
     var author: String
     var category: Category //Breakfast, lunch, dinner, dessert
+    
+    var isValid: Bool {
+        !name.isEmpty && !description.isEmpty && !author.isEmpty
+    }
     
     /**
      Case iterable so that the Category enum can be iterated over to reference all of the possible cases. Could be used for a filtering system later on

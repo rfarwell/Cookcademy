@@ -22,4 +22,10 @@ class RecipeData: ObservableObject {
         }
         return filteredRecipes
     }
+    
+    func addRecipe(recipe: Recipe) {
+        if recipe.isValid {
+            recipes.append(recipe)
+        }
+    }
 }

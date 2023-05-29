@@ -12,6 +12,9 @@ struct RecipesListView: View {
     @StateObject var recipeData = RecipeData()
     let category: MainInformation.Category
     
+    @State var isPresenting = false
+    @State var newRecipe = Recipe() //Empty recipe to be populated by the modify recipe sheet
+    
     private let listBackgroundColor = AppColor.background
     private let listForegroundColor = AppColor.foreground
     
@@ -27,8 +30,36 @@ struct RecipesListView: View {
             }
             .navigationTitle(navigationTitle)
             .listStyle(.inset)
-            
-        
+            .toolbar(content: {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        isPresenting = true
+                    }, label: {
+                        Image(systemName: "plus")
+                    })
+                }
+            })
+            .sheet(isPresented: $isPresenting, content: {
+                NavigationView(content: {
+                    ModifyRecipeView(recipe: $newRecipe)
+                        .toolbar(content: {
+                            ToolbarItem(placement: .cancellationAction){
+                                Button("Dismiss") {
+                                    isPresenting = false
+                                }
+                            }
+                            ToolbarItem(placement: .confirmationAction){
+                                if newRecipe.isValid {
+                                    Button("Add") {
+                                        recipeData.addRecipe(recipe: newRecipe)
+                                        isPresenting = false
+                                    }
+                                }
+                            }
+                        })
+                        .navigationTitle("Add a new recipe")
+                })
+            })
     }
 }
 

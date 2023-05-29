@@ -10,6 +10,7 @@ import SwiftUI
 struct RecipesListView: View {
     //StateObject so that the view updates when the model changes
     @StateObject var recipeData = RecipeData()
+    let category: MainInformation.Category
     
     private let listBackgroundColor = AppColor.background
     private let listForegroundColor = AppColor.foreground
@@ -32,18 +33,19 @@ struct RecipesListView: View {
     }
 }
 
-extension RecipesListView {
-    var recipes: [Recipe] {
-        recipeData.recipes
+extension RecipesListView {    
+    private var recipes: [Recipe] {
+        recipeData.recipes(for: category)
     }
     
     var navigationTitle: String {
-        "All Recipes"
+        category.rawValue
     }
 }
 
 struct RecipesListView_Previews: PreviewProvider {
     static var previews: some View {
-        RecipesListView()
+        RecipesListView(category: MainInformation.Category.breakfast)
+            .environmentObject(RecipeData())
     }
 }

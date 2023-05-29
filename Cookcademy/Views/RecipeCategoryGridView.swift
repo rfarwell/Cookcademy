@@ -11,12 +11,17 @@ struct RecipeCategoryGridView: View {
     private var recipeData = RecipeData()
     
     var body: some View {
+        let columns = [GridItem(), GridItem()]
         NavigationView(content: {
             ScrollView{
-                LazyVGrid(columns: [GridItem(), GridItem()], content: {
+                LazyVGrid(columns: columns, content: {
                     ForEach(MainInformation.Category.allCases,
                             id: \.self) {category in
-                        CategoryView(category: category)
+                        NavigationLink(destination: {RecipesListView(category: category)},
+                                       label: {
+                            CategoryView(category: category).foregroundColor(.black)
+                        })
+                        
                     }
                 }).navigationTitle("Categories")
             }

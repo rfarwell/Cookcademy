@@ -49,6 +49,7 @@ struct MainInformation {
      Case iterable so that the Category enum can be iterated over to reference all of the possible cases. Could be used for a filtering system later on
      */
     enum Category: String, CaseIterable {
+        
         case breakfast = "Breakfast"
         case lunch = "Lunch"
         case dinner = "Dinner"

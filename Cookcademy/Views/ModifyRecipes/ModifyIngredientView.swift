@@ -19,6 +19,7 @@ struct ModifyIngredientView: View {
             Form {
                 //Text field to change ingredient name
                 TextField("Ingredient Name", text: $ingredient.name)
+                    .listRowBackground(listBackgroundColor)
                 
                 //Stepper for changing the quantity of the ingredient
                 Stepper(value: $ingredient.quantity, in: 0...100, step: 0.5) {
@@ -30,6 +31,7 @@ struct ModifyIngredientView: View {
                         .keyboardType(.numbersAndPunctuation)
                     }
                 }
+                    .listRowBackground(listBackgroundColor)
                 
                 //Picker to choose which unit is used
                 Picker(selection: $ingredient.unit,
@@ -40,6 +42,7 @@ struct ModifyIngredientView: View {
                         Text(unit.rawValue)
                     }
                 }
+                .listRowBackground(listBackgroundColor)
                 .pickerStyle(.menu)
                 
                 HStack {
@@ -48,9 +51,10 @@ struct ModifyIngredientView: View {
                         createAction(ingredient)
                     }
                     Spacer()
-                }
+                }.listRowBackground(listBackgroundColor)
                 
             }
+            .foregroundColor(listTextColor)
         }
     }
 }

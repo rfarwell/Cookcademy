@@ -20,7 +20,7 @@ struct ModifyIngredientsView: View {
         VStack {
             let addIngredientView = ModifyIngredientView(ingredient: $newIngredient) { ingredient in
                     ingredients.append(ingredient)
-                    newIngredient = Ingredient(name: "", quantity: 0.0, unit: .none)
+                    newIngredient = Ingredient()
                   }
             if ingredients.isEmpty {
                 Spacer()
@@ -47,8 +47,7 @@ struct ModifyIngredientsView: View {
 
 struct ModifyIngredientsView_Previews: PreviewProvider {
     @State static var emptyIngredients = [Ingredient]()
-    @State static var nonEmptyIngredients = [Ingredient(name: "Pasta",
-                                                        quantity: 100, unit: Ingredient.Unit.g)]
+    @State static var nonEmptyIngredients = [Ingredient()]
     
     static var previews: some View {
         

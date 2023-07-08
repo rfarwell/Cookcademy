@@ -62,6 +62,18 @@ struct Ingredient {
     var quantity: Double
     var unit: Unit
     
+    init(name: String, quantity: Double, unit: Unit) {
+        self.name = name
+        self.quantity = quantity
+        self.unit = unit
+    }
+    
+    init() {
+        self.name = ""
+        self.quantity = 1.0
+        self.unit = Unit.none
+    }
+    
     var description: String {
         let formattedQuantity = String(format: "%g", quantity)
         switch unit {

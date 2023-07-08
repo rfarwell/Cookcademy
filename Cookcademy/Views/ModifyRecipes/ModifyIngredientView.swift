@@ -64,9 +64,7 @@ extension NumberFormatter {
 }
 
 struct ModifyIngredientView_Preview: PreviewProvider {
-  @State static var emptyIngredient = Ingredient(name: "",
-                                                 quantity: 0.0,
-                                                 unit: .none)
+  @State static var emptyIngredient = Ingredient()
   static var previews: some View {
     NavigationView {
       ModifyIngredientView(ingredient: $emptyIngredient) { ingredient in
